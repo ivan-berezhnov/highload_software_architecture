@@ -1,4 +1,4 @@
-* HightLoad SoftWare Arch. 
+# Highload Software Architecture
 
 Homework progress:
 
