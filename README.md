@@ -34,3 +34,5 @@ Homework progress:
 - [ ] 27 - AWS: Serverless calculations
 - [ ] 28 - Art of Trade-Offs. ATAM
 - [x] 29 - Building and Managing Tech Teams
+
+Total: 6 / 32

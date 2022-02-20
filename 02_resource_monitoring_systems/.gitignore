@@ -1,0 +1,159 @@
+# Ignore configuration files that may contain sensitive information.
+docroot/sites/default/settings.local.php
+local.drush.yml
+local.site.yml
+local.services.yml
+tests/behat/local.yml
+box/local.config.yml
+*.local
+local.blt.yml
+.docksal/docksal-local.env
+docroot/sites/development.services.yml
+docroot/sites/default/development.services.yml
+
+docroot/themes/custom/*
+
+web/sites/default/files/*
+
+# OpenY artifacts.
+provisioning/
+
+# Ignore drupal core.
+docroot/core
+
+# Ignore paths that contain user-generated content.
+docroot/sites/*/files
+/files-private
+docroot/sites/*/private
+docroot/sites/*/files-private
+
+
+# Ignore contrib modules. These should be created during build process.
+docroot/modules/contrib
+docroot/themes/contrib
+docroot/profiles/contrib
+docroot/libraries
+docroot/devops
+drush/Commands
+
+# Ignore custom theme build artifacts
+docroot/themes/custom/*/node_modules
+#docroot/themes/custom/*/css
+docroot/themes/custom/*/styleguide
+
+# Ignore build artifacts
+deployment_identifier
+/deploy
+bin/*
+tmp
+reports
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Eclipse
+*.pydevproject
+.project
+.metadata
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpathk
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# User-specific stuff:
+.idea/
+/docroot/adminer.php
+
+#Composer vendor
+vendor
+
+#Sass
+.sass-cache
+*.css.map
+
+# DevDesktop
+*.dd
+
+#Exports
+*.gz
+*.sql
+*.zip
+
+# PHPStorm
+atlassian-ide-plugin.xml
+
+#NPM
+npm-debug.log
+
+# Drush 9 Checksums
+drush/sites/.checksums
+
+# Deprecation detector rules
+.rules
+/.csslintrc
+/.editorconfig
+/.eslintignore
+/.eslintrc.json
+/.gitattributes
+/.ht.router.php
+/.htaccess
+/INSTALL.txt
+/README.txt
+/autoload.php
+/example.gitignore
+/index.php
+/robots.txt
+/update.php
+/web.config
+/.docksal/data/grafana/
+/.docksal/data/influxdb/
+/web/core/
+/web/modules/
+/web/profiles/

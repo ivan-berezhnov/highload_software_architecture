@@ -1,0 +1,72 @@
+version: "3.9"
+
+services:
+  cli:
+    container_name: drupal_monitoring_php-fpm7.4
+  web:
+    container_name: drupal_monitoring_apache2.4
+  db:
+    container_name: drupal_monitoring_mysql5.7
+
+  influxdb:
+    hostname: influxdb
+    image: influxdb:latest
+    container_name: drupal_monitoring_influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+      - "2003:2003"
+    env_file:
+      - './etc/influxdb/env.influxdb'
+    labels:
+      - io.docksal.virtual-port=8083
+      - io.docksal.virtual-port=8086
+      - io.docksal.virtual-port=8090
+      - io.docksal.virtual-port=2003
+      - io.docksal.virtual-host=influxdb.${VIRTUAL_HOST}
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=dm_admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=dm_admin@test
+      - DOCKER_INFLUXDB_INIT_ORG=drupal-monitoring-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=drupal-monitoring-bucket
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=302f3ef7-6752-4e98-a18d-3c0bf88a226e-d96b9f58-38e7-11ec-8d3d-0242ac130003
+    volumes:
+    # Data persistency
+    # sudo mkdir -p /srv/docker/influxdb/data
+      - ./data/influxdb/data:/var/lib/influxdb
+
+  telegraf:
+   image: telegraf:latest
+   container_name: drupal_monitoring_telegraf
+   user: "0"
+   links:
+      - influxdb
+   environment:
+      - DOCKER_INFLUXDB_INIT_ORG=drupal-monitoring-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=drupal-monitoring-bucket
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=302f3ef7-6752-4e98-a18d-3c0bf88a226e-d96b9f58-38e7-11ec-8d3d-0242ac130003
+   volumes:
+      - /var/run/docker.sock=:/var/run/docker.sock=
+      - ./etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
+  grafana:
+    hostname: grafana
+    image: grafana/grafana:latest
+    container_name: drupal_monitoring_grafana
+    ports:
+      - "3000:3000"
+    env_file:
+      - './etc/grafana/env.grafana'
+    user: "0"
+    links:
+      - influxdb
+    labels:
+      - io.docksal.virtual-port=3000
+      - io.docksal.virtual-host=grafana.${VIRTUAL_HOST}
+    volumes:
+      # Data persistency
+      # sudo mkdir -p /srv/docker/grafana/data; chown 472:472 /srv/docker/grafana/data
+      - ./data/grafana/data:/var/lib/grafana
