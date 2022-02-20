@@ -1,0 +1,8 @@
+http://drupal-monitoring.docksal/
+admin   admin
+
+http://grafana.drupal-monitoring.docksal/dashboards
+admin   admin
+
+http://influxdb.drupal-monitoring.docksal:8086/
+admin   admin@05

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/02_resource_monitoring_systems/dm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/02_resource_monitoring_systems/docker-telegraf-influx-grafana-stack" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/02_resource_monitoring_systems/drupal-monitoring" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/02_resource_monitoring_systems/dupal-monitoring" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/02_resource_monitoring_systems/monitoring" vcs="Git" />
+  </component>
+</project>
