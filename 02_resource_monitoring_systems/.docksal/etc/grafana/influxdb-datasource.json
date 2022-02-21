@@ -153,7 +153,32 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "usage_idle"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 9,
@@ -232,7 +257,32 @@
           },
           "unit": "bytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "used"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 9,
@@ -602,7 +652,7 @@
           "refId": "A"
         }
       ],
-      "title": "Apache Total accesses",
+      "title": "Apache: Total accesses",
       "type": "timeseries"
     },
     {
@@ -914,11 +964,15 @@
       },
       "targets": [
         {
-          "query": "from(bucket: \"drupal-monitoring-bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"phpfpm\")\n  |> filter(fn: (r) => r[\"_field\"] == \"max_listen_queue\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "1bpbq2fnz"
+          },
+          "query": "from(bucket: \"drupal-monitoring-bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"phpfpm\")\n  |> filter(fn: (r) => r[\"_field\"] == \"idle_processes\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
-      "title": "PHP-FPM: Max Listen Queue",
+      "title": "PHP-FPM: Idle Processes",
       "type": "timeseries"
     },
     {
@@ -1234,11 +1288,11 @@
             "type": "influxdb",
             "uid": "1bpbq2fnz"
           },
-          "query": "from(bucket: \"drupal-monitoring-bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mysql_mysql\")\n  |> filter(fn: (r) => r[\"_field\"] == \"aborted_connects\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"drupal-monitoring-bucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"mysql_mysql\")\n  |> filter(fn: (r) => r[\"_field\"] == \"commands_insert\" or r[\"_field\"] == \"commands_select\" or r[\"_field\"] == \"commands_update\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
-      "title": "MySQL: aborted_connects",
+      "title": "MySQL: Write",
       "type": "timeseries"
     },
     {
