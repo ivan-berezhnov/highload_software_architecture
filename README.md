@@ -8,7 +8,7 @@ Homework progress:
 - [x] 04 - Stress Testing. Approaches and tools
 - [ ] 05 - Mathematical methods of analysis
 - [ ] 06 - High Load Applications Architecture
-- [ ] 07 - Web Servers
+- [x] 07 - Web Servers
 - [ ] 08.1 - SQL. Databases
 - [ ] 08.2 - SQL. Transactions, Isolations, Locks
 - [ ] 9.1 - NoSQL. Google suggestion on Elasticsearch
