@@ -1,0 +1,8 @@
+version: "2.1"
+services:
+  # NGINX
+  web:
+    ports:
+      - "8000:8000"
+    labels:
+      - io.docksal.virtual-port=8000
